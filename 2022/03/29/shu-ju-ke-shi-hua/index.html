@@ -1,0 +1,1488 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="数据可视化————基于Echarst与flask框架, 黑锁白匙">
+    <meta name="description" content="数据可视化——通过Echarst,flask和pymysql进行部署、获取数据、可视化操作通过pymysql获取数据库中的数据import pymysql
+#获取链接
+connection = pymysql.connect(host=&#34;1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>数据可视化————基于Echarst与flask框架 | 黑锁白匙</title>
+    <link rel="icon" type="image/png" href="/jzb1023/jzb1023.github.io/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/jzb1023/jzb1023.github.io/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/jzb1023/jzb1023.github.io/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/jzb1023/jzb1023.github.io/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/jzb1023/jzb1023.github.io/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/jzb1023/jzb1023.github.io/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/jzb1023/jzb1023.github.io/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/jzb1023/jzb1023.github.io/css/my.css">
+
+    <script src="/jzb1023/jzb1023.github.io/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/jzb1023/jzb1023.github.io/" class="waves-effect waves-light">
+                    
+                    <img src="/jzb1023/jzb1023.github.io/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <!-- <span class="logo-span">黑锁白匙</span> -->
+                    <span class="logo-span">黑锁白匙</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/jzb1023/jzb1023.github.io/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/jzb1023/jzb1023.github.io/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/jzb1023/jzb1023.github.io/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/jzb1023/jzb1023.github.io/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/jzb1023/jzb1023.github.io/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/jzb1023/jzb1023.github.io/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/jzb1023/jzb1023.github.io/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/jzb1023/jzb1023.github.io/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">黑锁白匙</div>
+        <div class="logo-desc">
+            
+            快乐
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/jzb1023/jzb1023.github.io/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/jzb1023/jzb1023.github.io/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/jzb1023/jzb1023.github.io/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/jzb1023/jzb1023.github.io/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/jzb1023/jzb1023.github.io/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/jzb1023/jzb1023.github.io/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/jzb1023/jzb1023.github.io/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<!-- <a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50"> -->
+<a href="https://github.com/jzb1023/jzb1023.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+data-tooltip="my Github" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/jzb1023/jzb1023.github.io/medias/featureimages/12.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">数据可视化————基于Echarst与flask框架</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/jzb1023/jzb1023.github.io/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-03-29
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-04-18
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    8 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/jzb1023/jzb1023.github.io/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="数据可视化——通过Echarst-flask和pymysql进行部署、获取数据、可视化操作"><a href="#数据可视化——通过Echarst-flask和pymysql进行部署、获取数据、可视化操作" class="headerlink" title="数据可视化——通过Echarst,flask和pymysql进行部署、获取数据、可视化操作"></a>数据可视化——通过Echarst,flask和pymysql进行部署、获取数据、可视化操作</h3><h1 id="通过pymysql获取数据库中的数据"><a href="#通过pymysql获取数据库中的数据" class="headerlink" title="通过pymysql获取数据库中的数据"></a>通过pymysql获取数据库中的数据</h1><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pymysql
+<span class="token comment">#获取链接</span>
+connection <span class="token operator">=</span> pymysql<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>host<span class="token operator">=</span><span class="token string">"127.0.0.1"</span><span class="token punctuation">,</span>user<span class="token operator">=</span><span class="token string">"root"</span><span class="token punctuation">,</span>password<span class="token operator">=</span><span class="token string">"root"</span><span class="token punctuation">,</span>port<span class="token operator">=</span><span class="token number">3306</span><span class="token punctuation">,</span>database<span class="token operator">=</span><span class="token string">"mydb"</span><span class="token punctuation">,</span>charset<span class="token operator">=</span><span class="token string">"utf8"</span><span class="token punctuation">)</span>
+
+<span class="token comment">#获取一个浮标</span>
+cur <span class="token operator">=</span> connection<span class="token punctuation">.</span>cursor<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">#定义一个函数用来返回游标到应用层使用</span>
+<span class="token keyword">def</span> <span class="token function">getCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：
+	<span class="token keyword">return</span> cur
+<span class="token triple-quoted-string string">'''
+#创建一个sql语句
+sql = "select * from student"
+
+#执行sql语句
+cur.execute(sql)
+
+#将数据库中查询到的数据以元组的方式保存到一个变量中
+datas = cur.fetchall()
+
+#创建列表用来存储 结果元组中的 锁需的数据
+data1= []
+data2 =[]
+data3 =[]
+
+#遍历元组，拿到每一条记录 ，记录也是用元组表示的，通过下标可以获取相应所需的数据
+for i in datas:
+    data1.append(i[2])
+    data2.append(i[3])
+    data3.append(i[1])
+
+'''</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="创建flask框架"><a href="#创建flask框架" class="headerlink" title="创建flask框架"></a>创建flask框架</h1><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> Flask <span class="token keyword">import</span> flask
+<span class="token keyword">from</span> flask <span class="token keyword">import</span> render_template
+<span class="token keyword">import</span> json
+<span class="token keyword">import</span> datasource
+
+<span class="token triple-quoted-string string">'''
+1、通过@app.route(" ")来确定一个访问路径
+2、定义一个方法来返回一个html页面
+3、通过render_template() 确定一个返回的html 以及通过json来将从数据库中读出的数据放入html页面中
+'''</span>
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/bar"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    xdatas <span class="token operator">=</span> logic<span class="token punctuation">.</span>getX<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    ydatas <span class="token operator">=</span> logic<span class="token punctuation">.</span>getY<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"bar.html"</span><span class="token punctuation">,</span>data1 <span class="token operator">=</span> json<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span>xdatas<span class="token punctuation">)</span><span class="token punctuation">,</span>data2 <span class="token operator">=</span> json<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span>ydatas<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>data3 <span class="token operator">=</span> json<span class="token punctuation">.</span>dump<span class="token punctuation">(</span>ydata<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    app<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>创建一个专门获取数据的datasource.py</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> mysql_to_python
+<span class="token comment">#定义函数获取x轴所需数据</span>
+<span class="token keyword">def</span> <span class="token function">getX</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    cursor <span class="token operator">=</span> mysql_to_python<span class="token punctuation">.</span>getCon<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    cursor<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string">"select * from student"</span><span class="token punctuation">)</span>
+    datas <span class="token operator">=</span> cursor<span class="token punctuation">.</span>fetchall<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    xdata1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> datas<span class="token punctuation">:</span>
+        xdata1<span class="token punctuation">.</span>append<span class="token punctuation">(</span>i<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> xdata1
+
+<span class="token comment">#定义函数获取y轴所需数据</span>
+<span class="token keyword">def</span> <span class="token function">getY</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    cursor <span class="token operator">=</span> mysql_to_python<span class="token punctuation">.</span>getCon<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    cursor<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string">"select * from student"</span><span class="token punctuation">)</span>
+    datas <span class="token operator">=</span> cursor<span class="token punctuation">.</span>fetchall<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    ydata1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    ydata2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> datas<span class="token punctuation">:</span>
+        ydata1<span class="token punctuation">.</span>append<span class="token punctuation">(</span>i<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        ydata2<span class="token punctuation">.</span>append<span class="token punctuation">(</span>i<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    a<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+    a<span class="token punctuation">.</span>append<span class="token punctuation">(</span>ydata1<span class="token punctuation">)</span>
+    a<span class="token punctuation">.</span>append<span class="token punctuation">(</span>ydata2<span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span>  a<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h1 id="Echart基础"><a href="#Echart基础" class="headerlink" title="Echart基础"></a>Echart基础</h1><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token comment">&lt;!-- 通过JavaScript的外链式方法引入echarts --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://lib.baomitu.com/echarts/4.0.0/echarts-en.common.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token comment">&lt;!-- 通过创建一个div容器来存放显示可视化图片的地方 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">height</span><span class="token punctuation">:</span> 600px<span class="token punctuation">;</span><span class="token property">width</span><span class="token punctuation">:</span> 900px</span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h1 id="折线图"><a href="#折线图" class="headerlink" title="折线图"></a>折线图</h1><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//创建一个折线图</span>
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+    <span class="token comment">//初始化echarts实例对象，其中参数，dom，决定了图表最终呈现的位置</span>
+    <span class="token keyword">var</span> mEchart <span class="token operator">=</span> echarts<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token comment">//准备配置项</span>
+    <span class="token keyword">var</span> option<span class="token operator">=</span><span class="token punctuation">&#123;</span>
+      <span class="token literal-property property">title</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">text</span><span class="token operator">:</span><span class="token string">"折线"</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">tooltip</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">trigger</span><span class="token operator">:</span><span class="token string">"axis"</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">xAxis</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span><span class="token string">"category"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">data</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> data1<span class="token operator">|</span>safe <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token comment">//通过json传递从数据库中取来的数据，经过flask中render_template()传递到这</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">yAxis</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"value"</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">series</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span><span class="token string">"line"</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span>data2<span class="token operator">|</span>safe<span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token comment">//通过json传递从数据库中取来的数据，经过flask中render_template()传递到这</span>
+          <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">//将配置项设置给echarts实例对象</span>
+    mEchart<span class="token punctuation">.</span><span class="token function">setOption</span><span class="token punctuation">(</span>option<span class="token punctuation">)</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="双柱状图"><a href="#双柱状图" class="headerlink" title="双柱状图"></a>双柱状图</h1><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//创建一个双柱状图</span>
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+    <span class="token comment">//初始化echarts实例对象，其中参数，dom，决定了图表最终呈现的位置</span>
+    <span class="token keyword">var</span> mEchart <span class="token operator">=</span> echarts<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">var</span> xData <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span>data1<span class="token operator">|</span>safe<span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span> <span class="token comment">//通过json传递从数据库中取来的数据，经过flask中render_template()传递到这</span>
+    <span class="token keyword">var</span> yData1 <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span>data2<span class="token operator">|</span>safe<span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span> <span class="token comment">//通过json传递从数据库中取来的数据，经过flask中render_template()传递到这</span>
+    <span class="token keyword">var</span> yData2 <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span>data3<span class="token operator">|</span>safe<span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span> <span class="token comment">//通过json传递从数据库中取来的数据，经过flask中render_template()传递到这</span>
+
+    <span class="token comment">//准备配置项</span>
+    <span class="token keyword">var</span> option <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+      <span class="token literal-property property">title</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">text</span><span class="token operator">:</span><span class="token string">"成绩表"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">tooltip</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">trigger</span><span class="token operator">:</span><span class="token string">"item"</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">legend</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">data</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"数学成绩"</span><span class="token punctuation">,</span><span class="token string">"语文成绩"</span><span class="token punctuation">]</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">xAxis</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span><span class="token string">"category"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">data</span><span class="token operator">:</span>xData
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">yAxis</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"value"</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">series</span><span class="token operator">:</span><span class="token punctuation">[</span>	<span class="token comment">//每一个&#123;&#125;都是一个数据对象，以下就有两个数据对象，所以是双柱状图</span>
+        <span class="token punctuation">&#123;</span>
+          <span class="token literal-property property">name</span><span class="token operator">:</span><span class="token string">"数学成绩"</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">type</span><span class="token operator">:</span><span class="token string">"bar"</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">data</span><span class="token operator">:</span>yData1<span class="token punctuation">,</span>
+          <span class="token literal-property property">label</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">show</span><span class="token operator">:</span><span class="token boolean">true</span>
+          <span class="token punctuation">&#125;</span>
+
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#123;</span>
+          <span class="token literal-property property">name</span><span class="token operator">:</span><span class="token string">"语文成绩"</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">type</span><span class="token operator">:</span><span class="token string">"bar"</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">data</span><span class="token operator">:</span>yData2<span class="token punctuation">,</span>
+          <span class="token literal-property property">label</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">show</span><span class="token operator">:</span><span class="token boolean">true</span>
+          <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">]</span>
+
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">//将配置项设置给echarts实例对象</span>
+    mEchart<span class="token punctuation">.</span><span class="token function">setOption</span><span class="token punctuation">(</span>option<span class="token punctuation">)</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="雷达图"><a href="#雷达图" class="headerlink" title="雷达图"></a>雷达图</h1><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//创建一个雷达图</span>
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+  	<span class="token comment">//初始化echarts实例对象，其中参数，dom，决定了图表最终呈现的位置</span>
+    <span class="token keyword">var</span> mEchart <span class="token operator">=</span> echarts<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token comment">//此处应通过json传递从数据库中取来的数据，经过flask中render_template()传递到这</span>
+    <span class="token keyword">var</span> dataMax <span class="token operator">=</span><span class="token punctuation">[</span>
+            <span class="token punctuation">&#123;</span><span class="token literal-property property">name</span><span class="token operator">:</span><span class="token string">"易用性"</span><span class="token punctuation">,</span><span class="token literal-property property">max</span><span class="token operator">:</span><span class="token number">100</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+            <span class="token punctuation">&#123;</span><span class="token literal-property property">name</span><span class="token operator">:</span><span class="token string">"功能"</span><span class="token punctuation">,</span><span class="token literal-property property">max</span><span class="token operator">:</span><span class="token number">100</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+            <span class="token punctuation">&#123;</span><span class="token literal-property property">name</span><span class="token operator">:</span><span class="token string">"拍照"</span><span class="token punctuation">,</span><span class="token literal-property property">max</span><span class="token operator">:</span><span class="token number">100</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+            <span class="token punctuation">&#123;</span><span class="token literal-property property">name</span><span class="token operator">:</span><span class="token string">"跑分"</span><span class="token punctuation">,</span><span class="token literal-property property">max</span><span class="token operator">:</span><span class="token number">100</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+            <span class="token punctuation">&#123;</span><span class="token literal-property property">name</span><span class="token operator">:</span><span class="token string">"续航"</span><span class="token punctuation">,</span><span class="token literal-property property">max</span><span class="token operator">:</span><span class="token number">100</span><span class="token punctuation">&#125;</span>
+        <span class="token punctuation">]</span>
+    <span class="token comment">//准备配置项</span>
+    <span class="token keyword">var</span> option <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">radar</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">indicator</span><span class="token operator">:</span>dataMax<span class="token punctuation">,</span>  <span class="token comment">//各个维度的最大值</span>
+            <span class="token literal-property property">shape</span><span class="token operator">:</span><span class="token string">"circle"</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">series</span><span class="token operator">:</span><span class="token punctuation">[</span>
+            <span class="token punctuation">&#123;</span>
+                <span class="token literal-property property">data</span><span class="token operator">:</span><span class="token punctuation">[</span>
+                    <span class="token punctuation">&#123;</span>
+                        <span class="token literal-property property">name</span><span class="token operator">:</span><span class="token string">"华为"</span><span class="token punctuation">,</span>
+                        <span class="token literal-property property">value</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token number">80</span><span class="token punctuation">,</span><span class="token number">90</span><span class="token punctuation">,</span><span class="token number">80</span><span class="token punctuation">,</span><span class="token number">82</span><span class="token punctuation">,</span><span class="token number">90</span><span class="token punctuation">]</span>
+                    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">&#123;</span>
+                        <span class="token literal-property property">name</span><span class="token operator">:</span><span class="token string">"中兴"</span><span class="token punctuation">,</span>
+                        <span class="token literal-property property">value</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token number">70</span><span class="token punctuation">,</span><span class="token number">80</span><span class="token punctuation">,</span><span class="token number">75</span><span class="token punctuation">,</span><span class="token number">70</span><span class="token punctuation">,</span><span class="token number">78</span><span class="token punctuation">]</span>
+                    <span class="token punctuation">&#125;</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">type</span><span class="token operator">:</span><span class="token string">'radar'</span><span class="token punctuation">,</span><span class="token comment">//此图标是雷达图</span>
+                <span class="token literal-property property">areaStyle</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token comment">//将每一个产品的雷达图形成一个阴影面积</span>
+                <span class="token literal-property property">label</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+                    <span class="token comment">// show:true//让数值出现在图标上</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">&#125;</span>
+    
+    <span class="token comment">//将配置项设置给echarts实例对象</span>
+    mEchart<span class="token punctuation">.</span><span class="token function">setOption</span><span class="token punctuation">(</span>option<span class="token punctuation">)</span>
+
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="饼图"><a href="#饼图" class="headerlink" title="饼图"></a>饼图</h1><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//创建一个饼图</span>
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+	<span class="token comment">//初始化echarts实例对象，其中参数，dom，决定了图表最终呈现的位置</span>
+    <span class="token keyword">var</span> mEchart <span class="token operator">=</span> echarts<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment">//此处应通过json传递从数据库中取来的数据，经过flask中render_template()传递到这</span>
+    <span class="token keyword">var</span> piedata <span class="token operator">=</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">&#123;</span>
+                <span class="token literal-property property">name</span><span class="token operator">:</span><span class="token string">"淘宝"</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">value</span><span class="token operator">:</span><span class="token number">11231</span>  
+            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+            <span class="token punctuation">&#123;</span>
+                <span class="token literal-property property">name</span><span class="token operator">:</span><span class="token string">"京东"</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">value</span><span class="token operator">:</span><span class="token number">22673</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+            <span class="token punctuation">&#123;</span>
+                <span class="token literal-property property">name</span><span class="token operator">:</span><span class="token string">"唯品会"</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">value</span><span class="token operator">:</span><span class="token number">6123</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+            <span class="token punctuation">&#123;</span>
+                <span class="token literal-property property">name</span><span class="token operator">:</span><span class="token string">"一号店"</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">vlaue</span><span class="token operator">:</span><span class="token number">8989</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+            <span class="token punctuation">&#123;</span>
+                <span class="token literal-property property">name</span><span class="token operator">:</span><span class="token string">"聚美优品"</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">value</span><span class="token operator">:</span><span class="token number">6700</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">]</span>
+    <span class="token comment">//准备配置项</span>
+    <span class="token keyword">var</span> option<span class="token operator">=</span><span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">title</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">text</span><span class="token operator">:</span><span class="token string">"饼图练习"</span><span class="token punctuation">,</span>
+
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">tooltip</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">trigger</span><span class="token operator">:</span><span class="token string">"item"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">series</span><span class="token operator">:</span><span class="token punctuation">[</span>
+            <span class="token punctuation">&#123;</span>
+                <span class="token literal-property property">type</span><span class="token operator">:</span><span class="token string">'pie'</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">data</span><span class="token operator">:</span>piedata<span class="token punctuation">,</span>
+                <span class="token literal-property property">label</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token comment">//饼图文字的显示</span>
+                    <span class="token literal-property property">show</span> <span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span class="token comment">//默认</span>
+                    <span class="token function-variable function">formatter</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">arg</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                        <span class="token comment">// console.log(arg.percent)</span>
+                        <span class="token keyword">return</span> arg<span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">"平台  花费"</span><span class="token operator">+</span> arg<span class="token punctuation">.</span>value <span class="token operator">+</span><span class="token string">"元   占比"</span> <span class="token operator">+</span>arg<span class="token punctuation">.</span>percent
+                    <span class="token punctuation">&#125;</span>
+                    
+                <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+                <span class="token comment">// radius:150//饼图的半径 可以使用百分比 取其容器宽或高的最小值，在按比例得取半径值</span>
+                <span class="token comment">//双圆环</span>
+                <span class="token literal-property property">radius</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"50%"</span><span class="token punctuation">,</span><span class="token string">"75%"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token comment">//南丁格尔图    饼图的每个区域半径不同，随之占比增加</span>
+                <span class="token comment">// roseType:"radius",</span>
+                <span class="token literal-property property">selectedMode</span><span class="token operator">:</span><span class="token string">"single"</span><span class="token punctuation">,</span> <span class="token comment">//设置选中，能够偏离圆点</span>
+                <span class="token literal-property property">selectedOffset</span><span class="token operator">:</span><span class="token number">25</span>
+                
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">&#125;</span>
+    
+    <span class="token comment">//将配置项设置给echarts实例对象</span>
+    mEchart<span class="token punctuation">.</span><span class="token function">setOption</span><span class="token punctuation">(</span>option<span class="token punctuation">)</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h1><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//创建一个散点图</span>
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+  
+  <span class="token comment">//初始化echarts实例对象，其中参数，dom，决定了图表最终呈现的位置</span>
+    <span class="token keyword">var</span> mChart <span class="token operator">=</span> echarts<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	
+	<span class="token comment">//此处应通过json传递从数据库中取来的数据，经过flask中render_template()传递到这，处理数据</span>
+    <span class="token keyword">var</span> data<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">&#123;</span><span class="token string-property property">"gender"</span><span class="token operator">:</span><span class="token string">"man"</span><span class="token punctuation">,</span><span class="token string-property property">"height"</span><span class="token operator">:</span><span class="token number">170.2</span><span class="token punctuation">,</span><span class="token string-property property">"weight"</span><span class="token operator">:</span><span class="token number">60</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#123;</span><span class="token string-property property">"gender"</span><span class="token operator">:</span><span class="token string">"man"</span><span class="token punctuation">,</span><span class="token string-property property">"height"</span><span class="token operator">:</span><span class="token number">170.2</span><span class="token punctuation">,</span><span class="token string-property property">"weight"</span><span class="token operator">:</span><span class="token number">60</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span><span class="token string-property property">"gender"</span><span class="token operator">:</span><span class="token string">"man"</span><span class="token punctuation">,</span><span class="token string-property property">"height"</span><span class="token operator">:</span><span class="token number">169.2</span><span class="token punctuation">,</span><span class="token string-property property">"weight"</span><span class="token operator">:</span><span class="token number">63</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span><span class="token string-property property">"gender"</span><span class="token operator">:</span><span class="token string">"man"</span><span class="token punctuation">,</span><span class="token string-property property">"height"</span><span class="token operator">:</span><span class="token number">176</span><span class="token punctuation">,</span><span class="token string-property property">"weight"</span><span class="token operator">:</span><span class="token number">70</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#123;</span><span class="token string-property property">"gender"</span><span class="token operator">:</span><span class="token string">"man"</span><span class="token punctuation">,</span><span class="token string-property property">"height"</span><span class="token operator">:</span><span class="token number">170</span><span class="token punctuation">,</span><span class="token string-property property">"weight"</span><span class="token operator">:</span><span class="token number">62</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span><span class="token string-property property">"gender"</span><span class="token operator">:</span><span class="token string">"man"</span><span class="token punctuation">,</span><span class="token string-property property">"height"</span><span class="token operator">:</span><span class="token number">181.5</span><span class="token punctuation">,</span><span class="token string-property property">"weight"</span><span class="token operator">:</span><span class="token number">74</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span><span class="token string-property property">"gender"</span><span class="token operator">:</span><span class="token string">"man"</span><span class="token punctuation">,</span><span class="token string-property property">"height"</span><span class="token operator">:</span><span class="token number">176</span><span class="token punctuation">,</span><span class="token string-property property">"weight"</span><span class="token operator">:</span><span class="token number">68</span><span class="token punctuation">&#125;</span>
+    <span class="token punctuation">]</span>
+    <span class="token keyword">var</span> axisData<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span> <span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> data<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">var</span> height <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>height
+        <span class="token keyword">var</span> weight  <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>weight
+        <span class="token keyword">var</span> newArr<span class="token operator">=</span> <span class="token punctuation">[</span>height<span class="token punctuation">,</span>weight<span class="token punctuation">]</span>
+        axisData<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>newArr<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">//console.log(axisData)</span>
+
+	 <span class="token comment">//准备配置项</span>
+    <span class="token keyword">var</span> option<span class="token operator">=</span><span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">title</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+                <span class="token literal-property property">text</span><span class="token operator">:</span><span class="token string">"散点图"</span><span class="token punctuation">,</span>
+               
+            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">xAxis</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+                <span class="token literal-property property">type</span><span class="token operator">:</span><span class="token string">"value"</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">scale</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token comment">//拜托0值比例</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">yAxis</span><span class="token operator">:</span><span class="token punctuation">&#123;</span> 
+                <span class="token literal-property property">type</span><span class="token operator">:</span><span class="token string">"value"</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">scale</span><span class="token operator">:</span><span class="token boolean">true</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">series</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+                <span class="token literal-property property">name</span><span class="token operator">:</span><span class="token string">"身高体重趋势表"</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">type</span><span class="token operator">:</span><span class="token string">"scatter"</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">data</span><span class="token operator">:</span>axisData
+            <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    
+    <span class="token comment">//将配置项设置给echarts实例对象</span>
+    mChart<span class="token punctuation">.</span><span class="token function">setOption</span><span class="token punctuation">(</span>option<span class="token punctuation">)</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="Echarst-Tips"><a href="#Echarst-Tips" class="headerlink" title="Echarst Tips"></a>Echarst Tips</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">直角坐标系中的常用配置项（对于柱状图，折线图，散点图有效）
+    grid：<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+        使用show属性能够将边框表现出来
+        borderWidth 控制边框粗细大小
+        borderColor 控制边框颜色
+        通过top,left来控制图形在网页中的位置
+        通过width,heigth来控制整个边框大小，边框的大小影响了整个图像的大小
+
+坐标轴的配置：
+        坐标轴类型
+            type:<span class="token string">"value"</span>
+            type:<span class="token string">"catepory"</span>     必须与data绑定
+
+显示位置
+           position:
+                在x轴中有top和bottom两个属性
+                在y轴中有left和right两个属性<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/jzb1023/jzb1023.github.io/about" rel="external nofollow noreferrer">Ji Zibo</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://github.com/jzb1023/jzb1023.github.io/jzb1023/jzb1023.github.io/2022/03/29/shu-ju-ke-shi-hua/">https://github.com/jzb1023/jzb1023.github.io/jzb1023/jzb1023.github.io/2022/03/29/shu-ju-ke-shi-hua/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/jzb1023/jzb1023.github.io/about" target="_blank">Ji Zibo</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/jzb1023/jzb1023.github.io/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/jzb1023/jzb1023.github.io/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/jzb1023/jzb1023.github.io/2022/03/29/shu-ju-ke-shi-hua/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/jzb1023/jzb1023.github.io/medias/featureimages/12.jpg" class="responsive-img" alt="数据可视化————基于Echarst与flask框架">
+                        
+                        <span class="card-title">数据可视化————基于Echarst与flask框架</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Ji Zibo
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/jzb1023/jzb1023.github.io/2022/03/12/hello-world/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/jzb1023/jzb1023.github.io/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        
+                        <span class="card-title">Hello World</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Ji Zibo
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/jzb1023/jzb1023.github.io/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/jzb1023/jzb1023.github.io/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/jzb1023/jzb1023.github.io/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/jzb1023/jzb1023.github.io/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/jzb1023/jzb1023.github.io/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/jzb1023/jzb1023.github.io/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="540461985"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/jzb1023/jzb1023.github.io/libs/aplayer/APlayer.min.js"></script>
+<script src="/jzb1023/jzb1023.github.io/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/jzb1023/jzb1023.github.io/about" target="_blank">Ji Zibo</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">1.9k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <!-- <a href="https://github.com/jzb1023/jzb1023.github.io" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50"> -->
+    <a href="https://github.com/jzb1023/jzb1023.github.io" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50"></a>
+        
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:3320230046@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=3320230046" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 3320230046" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/jzb1023/jzb1023.github.io/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/jzb1023/jzb1023.github.io/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/jzb1023/jzb1023.github.io/libs/materialize/materialize.min.js"></script>
+    <script src="/jzb1023/jzb1023.github.io/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/jzb1023/jzb1023.github.io/libs/aos/aos.js"></script>
+    <script src="/jzb1023/jzb1023.github.io/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/jzb1023/jzb1023.github.io/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/jzb1023/jzb1023.github.io/js/matery.js"></script>
+
+    
+
+    
+        
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/jzb1023/jzb1023.github.io/libs/others/sakura.js"><\/script>');
+            }
+        </script>
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/jzb1023/jzb1023.github.io/libs/others/star.js"><\/script>');
+            }
+        </script>
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/jzb1023/jzb1023.github.io/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/jzb1023/jzb1023.github.io/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/jzb1023/jzb1023.github.io/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/jzb1023/jzb1023.github.io/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
